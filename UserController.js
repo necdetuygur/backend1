@@ -3,9 +3,7 @@ const ul = require("./UserLogic");
 const UserController = (app) => {
   // Add
   app.post("/user", (req, res) => {
-    console.log(req.body);
     const { ad, soyad, yas } = req.body;
-    console.log(ad, soyad, yas);
     const added = ul.Add({ ad, soyad, yas });
     res.send(added);
   });
