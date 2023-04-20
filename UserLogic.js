@@ -48,10 +48,12 @@ const Users = {
     this.Get(id).ad = ad;
     this.Get(id).soyad = soyad;
     this.Get(id).yas = yas;
+    return this.Get(id);
   },
 
   Remove(id) {
     this.DB = this.DB.filter((u) => u.id != id);
+    return id;
   },
 };
 

@@ -1,23 +1,18 @@
+const express = require("express");
+const bodyParser = require("body-parser");
 const uc = require("./UserController");
-const ul = require("./UserLogic");
+const app = express();
+const port = 80;
 
-console.log("Ekle");
-const added = ul.Add({ ad: "Ahmet", soyad: "Yılmaz", yas: "25" });
-console.log("Eklendi");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-console.log("ID'si", added.id);
+app.get("/", (req, res) => {
+  res.send("backend1");
+});
 
-console.log("Data", ul.Get(added.id));
-console.log("Tüm Data", ul.GetAll());
+uc(app);
 
-console.log("Güncelle");
-ul.Update(added.id, "Mehmet", "Can", "26");
-console.log("Güncellendi");
-
-console.log(ul.Get(added.id));
-
-console.log("Sil");
-ul.Remove(added.id);
-console.log("Silindi");
-
-console.log("Tüm Data", ul.GetAll());
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+});
